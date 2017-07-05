@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <form method="POST" action="@routes.LoginController.login">
+        <label>Username:</label><input type="text" id="username" name="username">
+        <label>Password:</label><input type="password" id="password" name="password">
+        <button type="submit">Login</button>
+    </form>
+</div>
