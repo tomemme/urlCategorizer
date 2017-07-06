@@ -1,0 +1,27 @@
+@(user : User, users : List[User])
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <form method="POST" action="@routes.UserController.updateUser">
+        <input type="hidden" name="id" id="id" value="@user.getUserId">
+        <div class="row">
+            <div class="col-md-12"><h1>Edit User</h1></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">First Name:</div>
+            <div class="col-md-3"><input type="text" name="firstname" id="firstname" value="@user.getFirstName"></div>
+            <div class="col-md-2">Last Name:</div>
+            <div class="col-md-3"><input type="text" name="lastname" id="lastname" value="@user.getLastName"></div>
+        </div>
+
+        <div class="row"><div class="col-md-4"><button type="submit">Save</button></div></div>
+    </form>        <div class="row"></div>
+
+</div>
+</body>
+</html>

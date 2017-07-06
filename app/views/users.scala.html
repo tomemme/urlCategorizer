@@ -1,0 +1,22 @@
+@(users : List[User])
+<!DOCTYPE html>
+<html>
+<body>
+<form method="GET" action="@routes.UserController.userSearch">
+    Last Name:<input type="text" name="lastname" id="lastname">
+    <button type="submit">Search</button>
+</form>
+<table>
+    @for(user <- users) {
+    <tr>
+        <td>
+            <a href="/user/@user.getUserId">@user.getFirstName</a>
+        </td>
+        <td>
+            <a href="/user/@user.getUserId">@user.getLastName</a>
+        </td>
+    </tr>
+    }
+</table>
+</body>
+</html>

@@ -15,4 +15,16 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET     /login                      controllers.LoginController.getLogin
 POST    /login                      controllers.LoginController.login
 
+GET     /user/:id                   controllers.UserController.getUser(id:Integer)
+GET     /users                      controllers.UserController.getUsers
+GET     /userSearch                 controllers.UserController.userSearch
+GET     /userAdd                    controllers.UserController.addUser
+POST    /userAdd                    controllers.UserController.addNewUser
+POST    /userUpdate                 controllers.UserController.updateUser
+
+
+
+
+
+
 

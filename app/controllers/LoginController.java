@@ -30,10 +30,10 @@ public class LoginController extends BaseController
         String username = form.get("username");
         String password = form.get("password");
 
-        if (password.equals("pencil"))
+        if (password.equals("Passw0rd"))
         {
             login(username);
-            //result = redirect(routes.UserController.getUser());
+            result = redirect(routes.UserController.getUser(1));
         }
 
         return result;

@@ -1,0 +1,16 @@
+@(userForm: UserForm, errorMessages : List[String])
+<!DOCTYPE html>
+<html>
+<body>
+<form method="POST" action="@routes.UserController.addNewUser">
+    First Name:<input type="text" name="firstname" id="firstname" value="@userForm.firstName"><br>
+    Last Name:<input type="text" name="lastname" id="lastname" value="@userForm.lastName"><br>
+    Username:<input type="text" name="userusername" id="userusername" value="@userForm.userUsername"><br>
+    Password:<input type="password" name="password" id="password"><br>
+    <button type="submit">Save</button>
+</form>
+@for(errorMessage <- errorMessages){
+<h3>@errorMessage</h3>
+}
+</body>
+</html>
