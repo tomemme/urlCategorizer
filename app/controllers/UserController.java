@@ -11,7 +11,6 @@ import play.mvc.Result;
 
 import javax.inject.Inject;
 import javax.persistence.Query;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,8 +105,28 @@ public class UserController extends BaseController
 
         jpaApi.em().persist(user);
 
-        return redirect(routes.UserController.getUser(userId));
+        return ok(views.html.menu.render());
+
+
     }
+    //getuser that pulls id out of session
+    @Transactional
+    public Result getUser()
+    {
+        DynamicForm form = formFactory.form().bindFromRequest();
+
+        int userId = Integer.parseInt(form.get("id"));
+
+        User user = jpaApi.em().
+                createQuery("SELECT u FROM User u WHERE user_Id = :user_id", User.class).
+                setParameter("id", userId).getSingleResult();
+
+
+
+        return ok(views.html.user.render(user));
+    }
+
+
 
     @Transactional(readOnly = true)
     public Result getUser(Integer id)
@@ -116,7 +135,6 @@ public class UserController extends BaseController
                 jpaApi.em().
                         createQuery("SELECT u FROM User u WHERE userId = :id", User.class).
                         setParameter("id", id).
-                        //TODO error on 119
                         getSingleResult();
 
 
@@ -132,7 +150,7 @@ public class UserController extends BaseController
         none.setLastName("None");
         users.add(0, none);
 
-        return ok(views.html.user.render(user, users));
+        return ok(views.html.user.render(user));
     }
 
     @Transactional(readOnly = true)
@@ -161,7 +179,7 @@ public class UserController extends BaseController
         Logger.debug(searchLastName);
 
         Query query = jpaApi.em().
-                createQuery("SELECT u FROM User u WHERE LastName LIKE :searchLastName ORDER BY lastname, firstname", User.class);
+                createQuery("SELECT u FROM User u WHERE Last_Name LIKE :searchLastName ORDER BY last_name, first_name", User.class);
 
         query.setParameter("searchLastName", searchLastName + "%");
 

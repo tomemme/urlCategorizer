@@ -3,6 +3,7 @@ package models;
 
 public class UserForm
 {
+
     public String firstName;
     public String lastName;
     public String userUsername;

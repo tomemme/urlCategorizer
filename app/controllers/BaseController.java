@@ -4,22 +4,22 @@ import play.mvc.Controller;
 
 public class BaseController extends Controller
 {
-    private static String usernameToken = "username";
+    private static String userIdToken = "userId";
 
-    public void login(String userName)
+    public void login(String userId)
     {
-        session().put(usernameToken, userName);
+        session().put(userId, userId);
     }
 
     public boolean loggedIn()
     {
-        String userName = session().get(usernameToken);
+        String userId = session().get(userIdToken);
 
-        return (userName != null && userName.length() > 0);
+        return (userId != null && userId.length() > 0);
     }
 
     public void logout()
     {
-        session().remove(usernameToken);
+        session().remove(userIdToken);
     }
 }

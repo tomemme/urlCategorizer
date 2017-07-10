@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container">
-    <form method="POST" action="@routes.UserController.updateUser">
+    <form method="GET" action="@routes.UserController.updateUser">
         <input type="hidden" name="id" id="id" value="@user.getUserId">
         <div class="row">
             <div class="col-md-12"><h1>Edit User</h1></div>
@@ -19,7 +19,7 @@
             <div class="col-md-3"><input type="text" name="lastname" id="lastname" value="@user.getLastName"></div>
             <div class="col-md-2">Username:</div>
             <div class="col-md-3"><input type="text" name="userusername" id="userusername"
-                                            value="@user.getUserUsername"></div>
+                                         value="@user.getUserUsername"></div>
             <div class="col-md-2">Password:</div>
             <div class="col-md-3"><input type="text" name="password" id="password" value="@user.getPassword"></div>
         </div>

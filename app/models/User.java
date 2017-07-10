@@ -2,10 +2,7 @@ package models;
 
 import play.data.validation.Constraints;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -17,6 +14,7 @@ public class User
     public static final int LAST_NAME_MAX_LENGTH = 30;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "User_Id")
     private int userId;
 
