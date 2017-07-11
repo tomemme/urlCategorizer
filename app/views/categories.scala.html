@@ -1,0 +1,19 @@
+@(categories : List[Category])
+<!DOCTYPE html>
+<html>
+<body>
+<form method="GET" action="@routes.CategoryController.categorySearch">
+    Category Name:<input type="text" name="categoryname" id="categoryname">
+    <button type="submit">Search</button>
+</form>
+<table>
+    @for(category <- categories) {
+    <tr>
+        <td>
+            <a href="/category/@category.getCategoryId">@category.getCategoryName</a>
+        </td>
+    </tr>
+    }
+</table>
+</body>
+</html>

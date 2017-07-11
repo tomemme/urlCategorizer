@@ -1,0 +1,28 @@
+@(categoryForm: CategoryForm, errorMessages : List[String])
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Url Categorizer</title>
+    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron text-center">
+    <h2>Url Categorizer</h2>
+</div>
+<form method="POST" action="@routes.CategoryController.addNewCategory">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="well well-lg"><center>
+                    <h4>Create Category</h4>
+                    <label>Category Name:</label><input type="text" name="categoryname" id="categoryname"
+                                                        value="@categoryForm.categoryName"></center>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

@@ -24,6 +24,15 @@ GET     /userAdd                    controllers.UserController.addUser
 POST    /userAdd                    controllers.UserController.addNewUser
 POST    /userUpdate                 controllers.UserController.updateUser
 
+GET     /categoryMenu               controllers.CategoryController.getCategoryMenu
+GET     /category/:id               controllers.CategoryController.getCategory(id:Integer)
+GET     /categories                 controllers.CategoryController.getCategories
+GET     /categorySearch             controllers.CategoryController.categorySearch
+GET     /categoryAdd                controllers.CategoryController.addCategory
+POST    /categoryAdd                controllers.CategoryController.addNewCategory
+POST    /categoryUpdate             controllers.CategoryController.updateCategory
+
+GET     /linksMenu                  controllers.LinkController.getLinksMenu
 
 
 
