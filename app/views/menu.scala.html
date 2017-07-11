@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Url Categorizer</title>
+    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+</head>
 <body>
-<form method="GET" action="@routes.MenuController.getMenu">
-</form>
-<table>
-    <tr>
-        <td>
-            <a href="/user/1">User Settings</a>
-        </td>
-        <td>
-            <a href="/viewcategories">View Categories</a>
-        </td>
-        <td>
-            <a href="/editlinks">Edit Links</a>
-        </td>
-    </tr>
-</table>
-
+<div class="jumbotron text-center">
+    <h2>Url Categorizer</h2>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="well well-sm"><center>
+                <form method="GET" action="@routes.MenuController.getMenu"></form>
+                <a href="/user/1">User Settings</a><br></center></div>
+        </div>
+            <div class="col-sm-4">
+                <div class="well well-sm"><center>
+                    <a href="/viewcategories">View Categories</a></center></div>
+            </div>
+                <div class="col-sm-4">
+                    <div class="well well-sm"><center>
+                            <a href="/editlinks">Edit Links</a></center></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
