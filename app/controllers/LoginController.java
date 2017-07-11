@@ -38,7 +38,7 @@ public class LoginController extends BaseController
         String username = form.get("username");
         String password = form.get("password");
 
-        String sql = "SELECT user_Id, password FROM User WHERE user_username = :username";
+        String sql = "SELECT user_Id, password, user_username FROM User WHERE user_username = :username";
 
         @SuppressWarnings("unchecked")
         List<UserLogin> userLogins = jpaApi.em().

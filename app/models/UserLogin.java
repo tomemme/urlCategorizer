@@ -11,6 +11,8 @@ public class UserLogin
     @Column(name = "user_Id")
     private int userId;
 
+    private String user_username;
+
     private byte[] password;
 
     public int getUserId()
@@ -21,5 +23,10 @@ public class UserLogin
     public byte[] getPassword()
     {
         return password;
+    }
+
+    public String getUserusername()
+    {
+        return user_username;
     }
 }
