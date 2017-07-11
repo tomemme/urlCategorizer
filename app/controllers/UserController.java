@@ -109,7 +109,7 @@ public class UserController extends BaseController
 
 
     }
-    //getuser that pulls id out of session
+
     @Transactional
     public Result getUser()
     {
