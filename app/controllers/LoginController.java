@@ -54,7 +54,7 @@ public class LoginController extends BaseController
 
             if (Arrays.equals(dbpassword, password.getBytes()))
             {
-                login(username);
+                login(userLogin.getUserId());
                 //result = redirect(routes.UserController.getUser(userLogin.getUserId()));
                 //TODO redirect to the menu page
                 result = redirect(routes.MenuController.getMenu());

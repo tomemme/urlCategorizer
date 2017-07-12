@@ -6,9 +6,9 @@ public class BaseController extends Controller
 {
     private static String userIdToken = "userId";
 
-    public void login(String userId)
+    public void login(int userId)
     {
-        session().put(userId, userId);
+        session().put(userIdToken, "" + userId);
     }
 
     public boolean loggedIn()
@@ -21,5 +21,12 @@ public class BaseController extends Controller
     public void logout()
     {
         session().remove(userIdToken);
+    }
+
+    public int getUserId()
+    {
+        int userId = Integer.parseInt(session().get(userIdToken));
+
+        return userId;
     }
 }

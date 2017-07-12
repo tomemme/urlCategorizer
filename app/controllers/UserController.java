@@ -111,14 +111,14 @@ public class UserController extends BaseController
     }
 
     @Transactional
-    public Result getUser()
+    public Result getMyUser()
     {
         DynamicForm form = formFactory.form().bindFromRequest();
 
-        int userId = Integer.parseInt(form.get("id"));
+        int userId = getUserId();
 
         User user = jpaApi.em().
-                createQuery("SELECT u FROM User u WHERE user_Id = :user_id", User.class).
+                createQuery("SELECT u FROM User u WHERE user_Id = :id", User.class).
                 setParameter("id", userId).getSingleResult();
 
 

@@ -48,7 +48,7 @@ public class CategoryController extends BaseController
 
         CategoryForm categoryForm = new CategoryForm();
         categoryForm.categoryName = form.get("categoryname");
-        categoryForm.userId = form.get("userId");
+
 
         boolean valid = true;
 
@@ -62,11 +62,11 @@ public class CategoryController extends BaseController
         {
             Category category = new Category();
             category.setCategoryName(categoryForm.categoryName);
-            category.setUserId(Integer.parseInt(categoryForm.userId));
+            category.setUserId(getUserId());
 
             jpaApi.em().persist(category);
 
-            result = redirect(routes.CategoryController.getCategory(category.getUserId()));
+            result = redirect(routes.CategoryController.getCategory(category.getCategoryId()));
         }
         else
         {
@@ -91,6 +91,7 @@ public class CategoryController extends BaseController
                         getSingleResult();
 
         category.setCategoryName(categoryName);
+        category.setCategoryId(categoryId);
 
         jpaApi.em().persist(category);
 
@@ -98,6 +99,20 @@ public class CategoryController extends BaseController
 
     }
     //TODO add getCategory like get user to overload method for category update
+    @Transactional
+    public Result getCategory()
+    {
+        DynamicForm form = formFactory.form().bindFromRequest();
+
+        int categoryId = Integer.parseInt(form.get("id"));
+
+        Category category = jpaApi.em().
+                createQuery("SELECT c FROM Category c WHERE categoryId = :id", Category.class).
+                setParameter("id", categoryId).getSingleResult();
+
+
+        return ok(views.html.category.render(category));
+    }
 
     @Transactional(readOnly = true)
     public Result getCategory(Integer id)
@@ -105,7 +120,7 @@ public class CategoryController extends BaseController
         Category category =
                 jpaApi.em().
                         createQuery("SELECT c FROM Category c WHERE categoryId = :id", Category.class).
-                        setParameter("categoryid", id).
+                        setParameter("id", id).
                         getSingleResult();
 
 
@@ -113,7 +128,7 @@ public class CategoryController extends BaseController
                 "WHERE categoryId <> :id " +
                 "ORDER BY category_name", Category.class);
 
-        usersQuery.setParameter("categoryid", id);
+        usersQuery.setParameter("id", id);
         List<Category> categories = usersQuery.getResultList();
 
         Category none = new Category();

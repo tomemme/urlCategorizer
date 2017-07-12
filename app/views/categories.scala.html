@@ -11,7 +11,7 @@
     <h2>Url Categorizer</h2>
     <p>Search Category Menu</p>
 </div>
-<form method="GET" action="@routes.CategoryController.categorySearch"></form>
+<form method="GET" action="@routes.CategoryController.categorySearch">
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
@@ -21,20 +21,25 @@
                     <a href="/categoryMenu">Back to Category Menu</a></center></div>
             </div>
             <div class="col-sm-4">
-                <div class="well well-sm"><center>
-                    Category Name: <input type="text" name="categoryname" id="categoryname"></center>
-                    <button type="submit" class="btn btn-primary" >Search</button></div>
+                <div class="well well-lg"><center>
+                    Category Name: <input type="text" name="categoryname" id="categoryname">
+                    <button type="submit" class="btn btn-primary" >Search</button></center></div>
             </div>
+            <div class="col-sm-4">
+                <div class="well well-sm"><center>
+            <label>Categories Related to search</label>
+            <table>
+                @for(category <- categories) {
+                <tr>
+                    <td>
+                        <a href="/category/@category.getCategoryId">@category.getCategoryName</a>
+                    </td>
+                </tr>
+                }
+            </table></center></div>
         </div>
     </div>
-<table>
-    @for(category <- categories) {
-    <tr>
-        <td>
-            <a href="/category/@category.getCategoryId">@category.getCategoryName</a>
-        </td>
-    </tr>
-    }
-</table>
+    </div>
+</form>
 </body>
 </html>
