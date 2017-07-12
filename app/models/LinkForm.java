@@ -1,8 +1,14 @@
 package models;
 
-/**
- * Created by Thomas on 7/7/2017.
- */
+
 public class LinkForm
 {
+    public String linkId;
+    public String categoryId;
+    public String linkCounter;
+    public String linkRating;
+    public String linkWatchedDate;
+    public String linkWatchBy;
+    public String linkComments;
+    public String linkUrl;
 }

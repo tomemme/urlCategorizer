@@ -33,7 +33,18 @@ GET     /categoryAdd                controllers.CategoryController.addCategory
 POST    /categoryAdd                controllers.CategoryController.addNewCategory
 POST    /categoryUpdate             controllers.CategoryController.updateCategory
 
-GET     /linksMenu                  controllers.LinkController.getLinksMenu
+GET     /linkMenu                   controllers.LinkController.getLinkMenu
+GET     /link/:id                   controllers.LinkController.getLink(id:Integer)
+GET     /links                      controllers.LinkController.getLinks
+GET     /linkSearch                 controllers.LinkController.linkSearch
+GET     /linkAdd                    controllers.LinkController.addLink
+POST    /linkAdd                    controllers.LinkController.addNewLink
+POST    /linkUpdate                 controllers.LinkController.updateLink
+
+
+
+
+
 
 
 
