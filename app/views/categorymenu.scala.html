@@ -8,21 +8,22 @@
 <body>
 <div class="jumbotron text-center">
     <h2>Url Categorizer</h2>
+    <p>Category Menu</p>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
             <div class="well well-sm"><center>
                 <form method="GET" action="@routes.CategoryController.getCategoryMenu"></form>
-                <a href="/categorySearch">Search Categories</a><br></center></div>
+                <a href="/categorySearch"><span class="glyphicon glyphicon-search"></span> Search Categories</a><br></center></div>
         </div>
         <div class="col-sm-4">
             <div class="well well-sm"><center>
-                <a href="/categoryAdd">Add Categories</a></center></div>
+                <a href="/categoryAdd"><span class="glyphicon glyphicon-plus"></span> Add Categories</a></center></div>
         </div>
         <div class="col-sm-4">
             <div class="well well-sm"><center>
-                <a href="/categoryUpdate">Edit Categories</a></center></div>
+                <a href="/categoryUpdate"><span class="glyphicon glyphicon-edit"></span> Edit Categories</a></center></div>
         </div>
     </div>
 </div>

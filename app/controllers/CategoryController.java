@@ -97,7 +97,7 @@ public class CategoryController extends BaseController
         return ok(views.html.menu.render());
 
     }
-
+    //TODO add getCategory like get user to overload method for category update
 
     @Transactional(readOnly = true)
     public Result getCategory(Integer id)
@@ -153,7 +153,7 @@ public class CategoryController extends BaseController
         Query query = jpaApi.em().
                 createQuery("SELECT c FROM Category c WHERE Category_Name LIKE :searchCategoryName ORDER BY category_name", Category.class);
 
-        query.setParameter("searchLastName", searchCategoryName + "%");
+        query.setParameter("searchCategoryName", searchCategoryName + "%");
 
         List<Category> categories = query.getResultList();
 
