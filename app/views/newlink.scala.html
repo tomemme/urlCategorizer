@@ -1,5 +1,5 @@
 @(linkForm: LinkForm, errorMessages : List[String])
-@*<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Url Categorizer</title>
@@ -9,19 +9,34 @@
 <body>
 <div class="jumbotron text-center">
     <h2>Url Categorizer</h2>
+    <p> Add New Link</p>
 </div>
 <form method="POST" action="@routes.LinkController.addNewLink">
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
+                <div class="well well-sm"><center>
+                    <a href="/menu">Back to Main Menu</a></center></div>
+                <div class="well well-sm"><center>
+                    <a href="/linkMenu">Back to Link Menu</a></center></div>
+            </div>
+            <div class="col-sm-4">
                 <div class="well well-lg"><center>
                     <h4>Create Link</h4>
-                    <label>Link Name:</label><input type="text" name="linkname" id="linkname"
-                                                        value="@linkForm.linkName"></center>
-                </div>
+
+                    <label>Link Url:</label><input type="text" name="linkurl" id="linkurl"
+                                                        value="@linkForm.linkUrl">
+                    <label>Link Rating:</label><input type="text" name="linkrating" id="linkrating"
+                                                      value="@linkForm.linkRating">
+                    <label>Link Watch by Date:</label><input type="date" name="linkwatchby" id="linkwatchby"
+                                                   value="@linkForm.linkWatchBy">
+                    <label>Link Comments:</label><input type="text" name="linkcomments" id="linkcomments"
+                                                      value="@linkForm.linkComments">
+                </center></div>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
 </form>
 </body>
-</html>*@
+</html>

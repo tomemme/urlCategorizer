@@ -177,8 +177,7 @@ public class LinkController extends BaseController
         Logger.debug(searchLinkUrl);
 
         Query query = jpaApi.em().
-                createQuery("SELECT l FROM Link l WHERE Link_Url LIKE :searchLinkUrl ORDER BY link_url", Link
-                        .class);
+                createQuery("SELECT l FROM Link l WHERE Link_Url LIKE :searchLinkUrl ORDER BY link_url", Link.class);
 
         query.setParameter("searchLinkUrl", searchLinkUrl + "%");
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Password;
 import models.User;
 import models.UserForm;
 import play.Logger;
@@ -34,7 +35,7 @@ public class UserController extends BaseController
     }
 
     @Transactional
-    public Result addNewUser()
+    public Result addNewUser() throws Exception
     {
         Result result;
         List<String> errorMessages = new ArrayList<>();
@@ -65,15 +66,20 @@ public class UserController extends BaseController
         if (valid)
         {
             User user = new User();
+
+            byte[] salt = Password.getNewSalt();
+            byte[] hashedPassword = Password.hashPassword(userForm.password.toCharArray(), salt);
+
             user.setFirstName(userForm.firstName);
             user.setLastName(userForm.lastName);
             user.setUserUsername(userForm.userUsername);
-            //TODO fix password
-            user.setPassword(userForm.password.getBytes());
             user.setUserCreated(LocalDateTime.now());
+            user.setPassword(hashedPassword);
+            user.setSalt(salt);
 
             jpaApi.em().persist(user);
 
+            //TODO dbexample has getEmployees??
             result = redirect(routes.UserController.getUser(user.getUserId()));
         }
         else

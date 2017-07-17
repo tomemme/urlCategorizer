@@ -33,6 +33,8 @@ public class User
     private byte[] password;
 
     //TODO add salt to program
+    @Column(name = "Salt")
+    private byte[] salt;
 
     @Column(name = "User_Created")
     private LocalDateTime userCreated;
@@ -51,6 +53,7 @@ public class User
     {
         return firstName;
     }
+
 
     public void setFirstName(String firstName)
     {
@@ -97,6 +100,16 @@ public class User
         this.password = password;
     }
 
+    public byte[] getSalt()
+    {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt)
+    {
+        this.salt = salt;
+    }
+
     public String getFullName()
     {
         final String fullName;
@@ -116,5 +129,7 @@ public class User
 
         return fullName;
     }
+
+
 
 }

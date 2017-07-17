@@ -97,23 +97,6 @@ public class CategoryController extends BaseController
         return ok(views.html.category.render(category));
 
     }
-/*
-    //TODO this method needs to compare userid somewhere??
-    @Transactional
-    public Result getMyCategories()
-    {
-        DynamicForm form = formFactory.form().bindFromRequest();
-        //TODO put category id in session??
-        int categoryId = Integer.parseInt(form.get(categoryId));
-
-        Category category = jpaApi.em().
-                createQuery("SELECT c FROM Category c WHERE category_Id = :id", Category.class).
-                setParameter("id", categoryId).getSingleResult();
-
-
-
-        return ok(views.html.category.render(category));
-    }*/
 
     @Transactional
     public Result getCategory()
@@ -160,11 +143,14 @@ public class CategoryController extends BaseController
     {
         Result result = unauthorized("No soup for you!");
 
+        int userId = getUserId();
+
         if (loggedIn())
         {
             List<Category> categories =
                     jpaApi.em().
-                            createQuery("SELECT c FROM Category c ORDER BY category_name", Category.class)
+                            createQuery("SELECT c FROM Category c WHERE user_Id = :id " +
+                                    "ORDER BY category_name", Category.class).setParameter("id", userId)
                             .getResultList();
 
             result = ok(views.html.categories.render(categories));
@@ -178,13 +164,16 @@ public class CategoryController extends BaseController
     {
         DynamicForm form = formFactory.form().bindFromRequest();
 
+        int userId = getUserId();
+
         String searchCategoryName = form.get("categoryname");
         Logger.debug(searchCategoryName);
 
         Query query = jpaApi.em().
-                createQuery("SELECT c FROM Category c WHERE Category_Name LIKE :searchCategoryName ORDER BY category_name", Category.class);
+                createQuery("SELECT c FROM Category c WHERE Category_Name LIKE :searchCategoryName AND user_Id = :id ORDER BY category_name", Category.class);
 
         query.setParameter("searchCategoryName", searchCategoryName + "%");
+        query.setParameter("id", userId);
 
         List<Category> categories = query.getResultList();
 
