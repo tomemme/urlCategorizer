@@ -27,6 +27,7 @@ public class BaseController extends Controller
     {
         int userId = Integer.parseInt(session().get(userIdToken));
 
+
         return userId;
     }
 }

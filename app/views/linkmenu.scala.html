@@ -10,24 +10,28 @@
     <h2>Url Categorizer</h2>
     <p>Category Menu</p>
 </div>
+<form method="GET" action="@routes.LinkController.getLinkMenu"></form>
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-2">
             <div class="well well-sm"><center>
-                <form method="GET" action="@routes.LinkController.getLinkMenu"></form>
-                <a href="/user/1">Edit Links</a><br></center></div>
-        </div>
-        <div class="col-sm-4">
+                <a href="/menu">Back to Main Menu</a></center></div>
+            <div class="well well-sm"><center>
+                <a href="/categoryMenu">Back to Category Menu</a></center></div>
+        </div></div>
+        <div class="row">
+        <div class="col-sm-3">
+            <div class="well well-sm"><center>
+                <a href="/link/1">Edit Links</a><br></center></div>
+        <div class="col-sm-3">
             <div class="well well-sm"><center>
                 <a href="/category">Edit Watch by Date</a></center></div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="well well-sm"><center>
                     <a href="/category">Edit Ratings</a></center></div></div>
-        </div>
-        <div class="col-sm-4">
             <div class="well well-sm"><center>
                 <a href="/editlinks">Edit Comments</a></center></div>
-        </div>
+        </div></div>
     </div>
 </div>
 </body>

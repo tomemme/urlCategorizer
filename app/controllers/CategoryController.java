@@ -80,14 +80,13 @@ public class CategoryController extends BaseController
     public Result updateCategory()
     {
         DynamicForm form = formFactory.form().bindFromRequest();
-
+        //TODO null number format exception
         int categoryId = Integer.parseInt(form.get("id"));
         String categoryName = form.get("categoryname");
 
         Category category =
                 jpaApi.em().
-                        createQuery("SELECT c FROM Category c WHERE categoryId = :id", Category.class).
-                        setParameter("id", categoryId).
+                        createQuery("SELECT c FROM Category c WHERE categoryId = :id", Category.class).setParameter("id", categoryId).
                         getSingleResult();
 
         category.setCategoryName(categoryName);
@@ -95,10 +94,27 @@ public class CategoryController extends BaseController
 
         jpaApi.em().persist(category);
 
-        return ok(views.html.menu.render());
+        return ok(views.html.category.render(category));
 
     }
-    //TODO add getCategory like get user to overload method for category update
+/*
+    //TODO this method needs to compare userid somewhere??
+    @Transactional
+    public Result getMyCategories()
+    {
+        DynamicForm form = formFactory.form().bindFromRequest();
+        //TODO put category id in session??
+        int categoryId = Integer.parseInt(form.get(categoryId));
+
+        Category category = jpaApi.em().
+                createQuery("SELECT c FROM Category c WHERE category_Id = :id", Category.class).
+                setParameter("id", categoryId).getSingleResult();
+
+
+
+        return ok(views.html.category.render(category));
+    }*/
+
     @Transactional
     public Result getCategory()
     {

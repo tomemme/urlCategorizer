@@ -97,6 +97,7 @@ public class LinkController extends BaseController
         return result;
     }
 
+    //TODO change view to take all parameters and route to edit link
     @Transactional
     public Result updateLink()
     {
@@ -124,7 +125,7 @@ public class LinkController extends BaseController
 
         jpaApi.em().persist(link);
 
-        return ok(views.html.menu.render());
+        return ok(views.html.link.render(link));
     }
 
     @Transactional(readOnly = true)
@@ -185,12 +186,5 @@ public class LinkController extends BaseController
 
         return ok(views.html.links.render(links));
     }
-
-
-
-
-
-
-
 
 }
