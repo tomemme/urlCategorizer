@@ -14,6 +14,7 @@ public class UserLogin
     private String user_username;
 
     private byte[] password;
+    private byte[] salt;
 
     public int getUserId()
     {
@@ -23,6 +24,11 @@ public class UserLogin
     public byte[] getPassword()
     {
         return password;
+    }
+
+    public byte[] getSalt()
+    {
+        return salt;
     }
 
     public String getUserusername()

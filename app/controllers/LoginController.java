@@ -1,6 +1,7 @@
 package controllers;
 
 
+import models.Password;
 import models.UserLogin;
 import play.data.DynamicForm;
 import play.data.FormFactory;
@@ -38,7 +39,7 @@ public class LoginController extends BaseController
         String username = form.get("username");
         String password = form.get("password");
 
-        String sql = "SELECT user_Id, password, user_username FROM User WHERE user_username = :username";
+        String sql = "SELECT user_Id, password, salt, user_username FROM User WHERE user_username = :username";
 
         @SuppressWarnings("unchecked")
         List<UserLogin> userLogins = jpaApi.em().
@@ -50,9 +51,10 @@ public class LoginController extends BaseController
         {
 
             UserLogin userLogin = userLogins.get(0);
+            byte[] hashedPassword = Password.hashPassword(password.toCharArray(), userLogin.getSalt());
             byte[] dbpassword = userLogin.getPassword();
 
-            if (Arrays.equals(dbpassword, password.getBytes()))
+            if (Arrays.equals(hashedPassword, dbpassword))
             {
                 login(userLogin.getUserId());
                 //result = redirect(routes.UserController.getUser(userLogin.getUserId()));
