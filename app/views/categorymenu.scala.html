@@ -10,12 +10,19 @@
     <h2>Url Categorizer</h2>
     <p>Category Menu</p>
 </div>
-<div class="container">
-    <div class="row">
-            <div class="col-sm-2">
-                <div class="well well-sm"><center>
-                    <a href="/menu">Back to Main Menu</a></center></div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Url Categorizer</a>
         </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/menu">Menu</a></li>
+            <li><a href="/userCategoriesMenu">User Categories</a></li>
+            <li><a href="/categoryMenu">Categories Menu</a></li>
+            <li><a href="/linkMenu">Links Menu</a></li>
+        </ul>
+    </div>
+</nav>
         <div class="col-sm-3">
             <div class="well well-sm"><center>
                 <form method="GET" action="@routes.CategoryController.getCategoryMenu"></form>
@@ -29,7 +36,5 @@
             <div class="well well-sm"><center>
                 <a href="/categories"><span class="glyphicon glyphicon-edit"></span> Update Categories</a></center></div>
         </div>
-    </div>
-</div>
 </body>
 </html>

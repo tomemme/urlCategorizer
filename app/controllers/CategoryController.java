@@ -66,7 +66,8 @@ public class CategoryController extends BaseController
 
             jpaApi.em().persist(category);
 
-            result = redirect(routes.CategoryController.getCategory(category.getCategoryId()));
+            result = ok(views.html.categorymenu.render());
+
         }
         else
         {

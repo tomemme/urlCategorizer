@@ -17,6 +17,8 @@ POST    /login                      controllers.LoginController.login
 
 GET     /menu                       controllers.MenuController.getMenu
 
+GET     /userCategoriesMenu         controllers.UserCategoriesController.getUserCategoriesMenu
+
 GET     /user/:id                   controllers.UserController.getUser(id:Integer)
 GET     /myUser                     controllers.UserController.getMyUser
 GET     /users                      controllers.UserController.getUsers
