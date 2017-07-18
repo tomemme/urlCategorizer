@@ -80,7 +80,8 @@ public class UserController extends BaseController
             jpaApi.em().persist(user);
 
             //TODO dbexample has getEmployees??
-            result = redirect(routes.UserController.getUser(user.getUserId()));
+            //result = redirect(routes.UserController.getUser(user.getUserId()));
+            result = ok(views.html.menu.render());
         }
         else
         {

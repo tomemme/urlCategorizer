@@ -1,6 +1,7 @@
 package controllers;
 
 
+import models.Category;
 import models.Link;
 import models.LinkForm;
 import play.Logger;
@@ -33,10 +34,19 @@ public class LinkController extends BaseController
         return ok(views.html.linkmenu.render());
     }
 
+    @Transactional(readOnly = true)
     public Result addLink()
     {
         List<String> errorMessages = new ArrayList<>();
-        return ok(views.html.newlink.render(new LinkForm(), errorMessages));
+
+        int userId = getUserId();
+        List<Category> categories =
+                jpaApi.em().
+                        createQuery("SELECT c FROM Category c WHERE user_Id = :id " +
+                                "ORDER BY category_name", Category.class).setParameter("id", userId)
+                        .getResultList();
+
+        return ok(views.html.newlink.render(new LinkForm(), categories, errorMessages));
     }
 
     @Transactional
@@ -86,12 +96,19 @@ public class LinkController extends BaseController
 
             jpaApi.em().persist(link);
 
-            result = ok(views.html.newlink.render(linkForm, errorMessages));
+            result = ok(views.html.linkmenu.render());
 
         }
         else
         {
-            result = ok(views.html.newlink.render(linkForm, errorMessages));
+            int userId = getUserId();
+            List<Category> categories =
+                    jpaApi.em().
+                            createQuery("SELECT c FROM Category c WHERE user_Id = :id " +
+                                    "ORDER BY category_name", Category.class).setParameter("id", userId)
+                            .getResultList();
+
+            result = ok(views.html.newlink.render(linkForm, categories ,errorMessages));
         }
 
         return result;
