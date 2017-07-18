@@ -1,4 +1,4 @@
-@(link : Link)
+@(link : Link, categories : List[Category])
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -23,7 +23,23 @@
                 <div class="well well-lg"><center>
                     <input type="hidden" name="id" id="id" value="@link.getLinkId">
                     <h4>Edit Link</h4>
-                    <label>Link Url:</label><input type="text" name="linkurl" id="linkurl">
+                    <label>Categories:</label><select id="categoryId" name="categoryId">
+                    @for(category <- categories){
+                    @if(category.getCategoryId == category.getCategoryName){
+                    <option selected value="@category.getCategoryId">@category.getCategoryName</option>
+                    }else{
+                    <option value="@category.getCategoryId">@category.getCategoryName</option>
+                    }
+                    }
+                </select><br>
+                    <label>Link Url:</label><input type="text" name="linkurl" id="linkurl"
+                                                   value="@link.getLinkUrl">
+                    <label>Link Rating:</label><input type="text" name="linkrating" id="linkrating"
+                                                      value="@link.getLinkRating">
+                    <label>Link Watch by Date:</label><input type="date" name="linkwatchby" id="linkwatchby"
+                                                             value="@link.getLinkWatchBy">
+                    <label>Link Comments:</label><input type="text" name="linkcomments" id="linkcomments"
+                                                        value="@link.getLinkComments">
                 </center></div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>

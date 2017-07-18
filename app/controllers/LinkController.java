@@ -133,6 +133,13 @@ public class LinkController extends BaseController
                         setParameter("id", linkId).
                         getSingleResult();
 
+        int userId = getUserId();
+        List<Category> categories =
+                jpaApi.em().
+                        createQuery("SELECT c FROM Category c WHERE user_Id = :id " +
+                                "ORDER BY category_name", Category.class).setParameter("id", userId)
+                        .getResultList();
+
         link.setLinkId(linkId);
         link.setCategoryId(categoryId);
         link.setLinkUrl(linkUrl);
@@ -142,7 +149,7 @@ public class LinkController extends BaseController
 
         jpaApi.em().persist(link);
 
-        return ok(views.html.link.render(link));
+        return ok(views.html.link.render(link, categories));
     }
 
     @Transactional(readOnly = true)
@@ -154,17 +161,25 @@ public class LinkController extends BaseController
                 getSingleResult();
 
 
-        Query usersQuery = jpaApi.em().createQuery("SELECT l FROM Link l ORDER BY link_url" +
-                "WHERE linkId <> :id ", Link.class);
+        Query usersQuery = jpaApi.em().createQuery("SELECT l FROM Link l " +
+                                                            "WHERE linkId <> :id " +
+                                                            "ORDER BY link_url", Link.class);
 
         usersQuery.setParameter("id", id);
         List<Link> links = usersQuery.getResultList();
+
+        int userId = getUserId();
+        List<Category> categories =
+                jpaApi.em().
+                        createQuery("SELECT c FROM Category c WHERE user_Id = :id " +
+                                "ORDER BY category_name", Category.class).setParameter("id", userId)
+                        .getResultList();
 
         Link none = new Link();
         none.setLinkId(-1);
         links.add(0, none);
 
-        return ok(views.html.link.render(link));
+        return ok(views.html.link.render(link, categories));
     }
 
     @Transactional(readOnly = true)
@@ -172,12 +187,16 @@ public class LinkController extends BaseController
     {
         Result result = unauthorized("No soup for you!");
 
+        int userId = getUserId();
+
         if (loggedIn())
         {
             List<Link> links =
-                    jpaApi.em().
-                            createQuery("SELECT l FROM Link l ORDER BY link_url", Link.class)
-                            .getResultList();
+                            jpaApi.em().
+                            createQuery("SELECT l FROM Link l " +
+                                                "WHERE user_Id = :id " +
+                                                "ORDER BY link_url", Link.class)
+                                    .setParameter("id", userId).getResultList();
 
             result = ok(views.html.links.render(links));
         }
@@ -190,13 +209,18 @@ public class LinkController extends BaseController
     {
         DynamicForm form = formFactory.form().bindFromRequest();
 
+        int userId = getUserId();
+
         String searchLinkUrl = form.get("linkurl");
         Logger.debug(searchLinkUrl);
 
         Query query = jpaApi.em().
-                createQuery("SELECT l FROM Link l WHERE Link_Url LIKE :searchLinkUrl ORDER BY link_url", Link.class);
+                createQuery("SELECT l FROM Link l " +
+                                    "WHERE Link_Url LIKE :searchLinkUrl AND user_Id = :id " +
+                                    "ORDER BY link_url", Link.class);
 
         query.setParameter("searchLinkUrl", searchLinkUrl + "%");
+        query.setParameter("id", userId);
 
         List<Link> links = query.getResultList();
 

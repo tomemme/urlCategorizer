@@ -23,15 +23,15 @@
             <div class="col-sm-4">
                 <div class="well well-lg"><center>
                     <h4>Create Link</h4>
-                    <label>Categories: </label><select id="categoryId" name="categoryId">
+                    <label>Categories:</label><select id="categoryId" name="categoryId">
                         @for(category <- categories){
                             @if(category.getCategoryId == category.getCategoryName){
                             <option selected value="@category.getCategoryId">@category.getCategoryName</option>
                             }else{
                                 <option value="@category.getCategoryId">@category.getCategoryName</option>
-                                }
+                                 }
                             }
-                    </select>
+                            </select><br>
                     <label>Link Url:</label><input type="text" name="linkurl" id="linkurl"
                                                         value="@linkForm.linkUrl">
                     <label>Link Rating:</label><input type="text" name="linkrating" id="linkrating"

@@ -67,7 +67,6 @@ public class CategoryController extends BaseController
             jpaApi.em().persist(category);
 
             result = redirect(routes.CategoryController.getCategory(category.getCategoryId()));
-            //result = ok(views.html.categories.render(category, Categories));
         }
         else
         {
@@ -125,8 +124,8 @@ public class CategoryController extends BaseController
 
 
         Query usersQuery = jpaApi.em().createQuery("SELECT c FROM Category c " +
-                "WHERE categoryId <> :id " +
-                "ORDER BY category_name", Category.class);
+                                                            "WHERE categoryId <> :id " +
+                                                            "ORDER BY category_name", Category.class);
 
         usersQuery.setParameter("id", id);
         List<Category> categories = usersQuery.getResultList();
@@ -150,8 +149,10 @@ public class CategoryController extends BaseController
         {
             List<Category> categories =
                     jpaApi.em().
-                            createQuery("SELECT c FROM Category c WHERE user_Id = :id " +
-                                    "ORDER BY category_name", Category.class).setParameter("id", userId)
+                            createQuery("SELECT c FROM Category c " +
+                                                "WHERE user_Id = :id " +
+                                                "ORDER BY category_name", Category.class)
+                            .setParameter("id", userId)
                             .getResultList();
 
             result = ok(views.html.categories.render(categories));
