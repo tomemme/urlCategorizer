@@ -2,6 +2,11 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Url Categorizer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
     <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
 </head>
@@ -9,24 +14,59 @@
 <div class="jumbotron text-center">
     <h2>Url Categorizer</h2>
 </div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Url Categorizer</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/login">Login</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">User Categories</a></li>
+            <li><a href="#">Categories Menu</a></li>
+            <li><a href="#">Links Menu</a></li>
+        </ul>
+        </div>
+    </div>
+</nav>
 <form method="POST" action="@routes.LoginController.login">
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
+            <div class="well"><center>
+                <h3>Create New User</h3>
+                <button type="submit" class="btn btn-primary" formmethod="GET" formaction="/userAdd">Create</button></center>
+            </div>
+        </div>
+        <div class="col-sm-6">
             <div class="well well-lg"><center>
           <h3>Please Login</h3>
-            <label>Username:</label><input type="text" id="username" name="username">
-                <label>Password:</label><input type="password" id="password" name="password"></center></div>
-                <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-        <div class="col-sm-4">
-            <div class="well"><center>
-            <h3>Create New User</h3>
-            <button type="submit" formmethod="GET" formaction="/userAdd">Create User</button></center>
-            </div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="username">Username:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="username" name="username"
+                                   placeholder="Enter username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">Password:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="pwd" name="password"
+                                   placeholder="Enter password">
+                        </div>
+                    </div>
+                            <button type="submit" class="btn btn-primary">Login</button></form>
+                </center></div>
         </div>
     </div>
 </div>
 </form>
-</div>
 </body>
