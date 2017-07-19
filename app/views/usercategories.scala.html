@@ -1,7 +1,9 @@
+@(categories : List[Category], links : List[Link])
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Url Categorizer</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -29,7 +31,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="/login">Login</a></li>
                 <li><a href="/menu">Menu</a></li>
-                <li class="active"><a href="/userCategoriesMenu">User Categories</a></li>
+                <li class="active"><a href="/userLinks">User Categories</a></li>
                 <li><a href="/categoryMenu">Categories Menu</a></li>
                 <li><a href="/linkMenu">Links Menu</a></li>
             </ul>
@@ -39,3 +41,33 @@
         </div>
     </div>
 </nav>
+
+<form method="GET" action="@routes.UserCategoriesController.getCategoryLinks">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-md-offset-2">
+                <div class="well well-lg"><center>
+                    <h4>Pick Category</h4>
+                    <label>Categories:</label><select onchange="this.form.submit()" id="categoryId" name="categoryId">
+                    @for(category <- categories){
+                    @if(category.getCategoryId == category.getCategoryName){
+                    <option selected value="@category.getCategoryId">@category.getCategoryName</option>
+                    }else{
+                    <option value="@category.getCategoryId">@category.getCategoryName</option>
+                        }
+                    }
+                </select><br></center>
+                </div>
+            </div>
+            <div class="col-sm-4">
+            <div class="well well-lg"><center>
+                <h4>Links Belonging to Category</h4>
+                    @for(link <- links){
+                        <a href="@link.getLinkUrl" target="_blank">@link.getLinkUrl</a>
+                        }
+            </center></div></div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

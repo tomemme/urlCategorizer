@@ -40,6 +40,8 @@ public class Link
     @Column(name = "Link_Url")
     private String linkUrl;
 
+
+
     public int getUserId()
     {
         return userId;

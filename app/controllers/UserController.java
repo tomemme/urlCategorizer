@@ -79,8 +79,7 @@ public class UserController extends BaseController
 
             jpaApi.em().persist(user);
 
-            //TODO dbexample has getEmployees??
-            //result = redirect(routes.UserController.getUser(user.getUserId()));
+
             result = ok(views.html.menu.render());
         }
         else
@@ -91,7 +90,6 @@ public class UserController extends BaseController
         return result;
     }
 
-    //TODO i don't think im using this feature is it necessary?
     @Transactional
     public Result updateUser()
     {
@@ -121,7 +119,6 @@ public class UserController extends BaseController
     @Transactional
     public Result getMyUser()
     {
-        //TODO check if this line is important??
         DynamicForm form = formFactory.form().bindFromRequest();
 
         int userId = getUserId();

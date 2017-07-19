@@ -114,7 +114,7 @@ public class LinkController extends BaseController
         return result;
     }
 
-    //TODO change view to take all parameters and route to edit link
+
     @Transactional
     public Result updateLink()
     {

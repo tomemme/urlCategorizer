@@ -18,7 +18,7 @@ GET     /logout                     controllers.LoginController.getLogout
 
 GET     /menu                       controllers.MenuController.getMenu
 
-GET     /userCategoriesMenu         controllers.UserCategoriesController.getUserCategoriesMenu
+GET     /userLinks                  controllers.UserCategoriesController.getCategoryLinks
 
 GET     /user/:id                   controllers.UserController.getUser(id:Integer)
 GET     /myUser                     controllers.UserController.getMyUser

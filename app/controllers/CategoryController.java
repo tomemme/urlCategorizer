@@ -19,7 +19,6 @@ public class CategoryController extends BaseController
     private final FormFactory formFactory;
     private final JPAApi jpaApi;
 
-    //TODO add and edit categories
     @Inject
     public CategoryController(FormFactory formFactory, JPAApi jpaApi)
     {
@@ -81,7 +80,7 @@ public class CategoryController extends BaseController
     public Result updateCategory()
     {
         DynamicForm form = formFactory.form().bindFromRequest();
-        //TODO null number format exception
+
         int categoryId = Integer.parseInt(form.get("id"));
         String categoryName = form.get("categoryname");
 

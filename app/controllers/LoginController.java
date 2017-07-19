@@ -58,7 +58,6 @@ public class LoginController extends BaseController
             {
                 login(userLogin.getUserId());
                 //result = redirect(routes.UserController.getUser(userLogin.getUserId()));
-                //TODO redirect to the menu page
                 result = redirect(routes.MenuController.getMenu());
             }
         }
