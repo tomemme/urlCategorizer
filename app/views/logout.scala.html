@@ -1,4 +1,3 @@
-@(categories : List[Category])
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -14,7 +13,7 @@
 <body>
 <div class="jumbotron text-center">
     <h2>Url Categorizer</h2>
-    <p>Search Category Menu</p>
+    <h3>Logged Out Successful</h3>
 </div>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -30,40 +29,14 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="/login">Login</a></li>
-                <li><a href="/menu">Menu</a></li>
-                <li><a href="/userCategoriesMenu">User Categories</a></li>
-                <li class="active"><a href="/categoryMenu">Categories Menu</a></li>
-                <li><a href="/linkMenu">Links Menu</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">User Categories</a></li>
+                <li><a href="#">Categories Menu</a></li>
+                <li><a href="#">Links Menu</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout">Logout</a></li>
+                <li class="active"><a href="/logout">Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form method="GET" action="@routes.CategoryController.categorySearch">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="well well-lg"><center>
-                    Category Name: <input type="text" name="categoryname" id="categoryname">
-                    <button type="submit" class="btn btn-primary" >Search</button></center></div>
-            </div>
-            <div class="col-sm-5">
-                <div class="well well-sm"><center>
-                    <label>Click to update Category</label>
-                    <table>
-                        @for(category <- categories) {
-                        <tr>
-                            <td>
-                                <a href="/category/@category.getCategoryId">@category.getCategoryName</a>
-                            </td>
-                        </tr>
-                        }
-                    </table></center></div>
-        </div>
-    </div>
-    </div>
-</form>
-</body>
-</html>

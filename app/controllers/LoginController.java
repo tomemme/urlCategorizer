@@ -66,4 +66,10 @@ public class LoginController extends BaseController
         return result;
     }
 
+    @Transactional
+    public Result getLogout()
+    {
+        return ok(views.html.logout.render());
+    }
+
 }
