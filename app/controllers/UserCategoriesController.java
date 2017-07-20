@@ -55,7 +55,7 @@ public class UserCategoriesController extends BaseController
                                                 .setParameter("id", userId).setParameter("catId", catId)
                                                 .getResultList();
 
-        return ok(views.html.usercategories.render(categories, links));
+        return ok(views.html.usercategories.render(categories, links, catId));
     }
 
 
