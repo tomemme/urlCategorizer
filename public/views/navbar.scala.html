@@ -1,9 +1,8 @@
-@(categoryForm: CategoryForm, errorMessages : List[String])
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
+    <meta charset="UTF-8">
     <title>Url Categorizer</title>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -14,7 +13,6 @@
 <body>
 <div class="jumbotron text-center">
     <h2>Url Categorizer</h2>
-    <p> Add New Category Menu</p>
 </div>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -29,11 +27,11 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="/login">Login</a></li>
-                <li><a href="/menu">Menu</a></li>
-                <li><a href="/userLinks">User Categories</a></li>
-                <li class="active"><a href="/categoryMenu">Categories Menu</a></li>
-                <li><a href="/linkMenu">Links Menu</a></li>
+                <li class="active"><a href="/login">Login</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">User Categories</a></li>
+                <li><a href="#">Categories Menu</a></li>
+                <li><a href="#">Links Menu</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/logout">Logout</a></li>
@@ -41,23 +39,5 @@
         </div>
     </div>
 </nav>
-<form method="POST" action="@routes.CategoryController.addNewCategory">
-    <div class="container">
-        <div class="row">
-            <div class="alert alert-info alert-dismissable"><center>
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Info!</strong> Please fill out all information.</center>
-            </div>
-            <div class="col-sm-4 col-md-offset-4">
-                <div class="well well-lg"><center>
-                    <h4>Create Category</h4>
-                    <label>Category Name:</label><input type="text" name="categoryname" id="categoryname"
-                                                        value="@categoryForm.categoryName">
-                    <button type="submit" class="btn btn-primary">Save</button></center>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
 </body>
 </html>
