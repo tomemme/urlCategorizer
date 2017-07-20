@@ -57,6 +57,12 @@ public class CategoryController extends BaseController
             errorMessages.add("Category Name must be " + Category.CATEGORY_NAME_MAX_LENGTH + " characters or less");
         }
 
+        if (categoryForm.categoryName.length() < Category.CATEGORY_NAME_MIN_LENGTH)
+        {
+            valid = false;
+            errorMessages.add("Category Name must be " + Category.CATEGORY_NAME_MIN_LENGTH + " characters or less");
+        }
+
         if (valid)
         {
             Category category = new Category();

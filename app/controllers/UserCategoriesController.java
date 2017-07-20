@@ -9,7 +9,6 @@ import play.data.FormFactory;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 import play.mvc.Result;
-import scala.Int;
 
 import javax.inject.Inject;
 import java.util.List;

@@ -66,6 +66,18 @@ public class LinkController extends BaseController
 
         boolean valid = true;
 
+        if(linkForm.categoryId == null)
+        {
+            valid = false;
+            errorMessages.add("Please pick a Category");
+        }
+
+        if(linkForm.linkWatchBy == null)
+        {
+            valid = false;
+            errorMessages.add("Please pick a date in the future");
+        }
+
         if(linkForm.linkUrl.length() > Link.URL_LINK_MAX_LENGTH)
         {
             valid = false;
@@ -82,6 +94,24 @@ public class LinkController extends BaseController
         {
             valid = false;
             errorMessages.add("Link Rating must be " + Link.LINK_RATING_MAX_LENGTH + " characters or less");
+        }
+
+        if(linkForm.linkUrl.length() < Link.URL_LINK_MIN_LENGTH)
+        {
+            valid = false;
+            errorMessages.add("Link Url must be " + Link.URL_LINK_MIN_LENGTH + " characters or less");
+        }
+
+        if(linkForm.linkComments.length() < Link.LINK_COMMENTS_MIN_LENGTH)
+        {
+            valid = false;
+            errorMessages.add("Link Comments must be " + Link.LINK_COMMENTS_MIN_LENGTH + " characters or less");
+        }
+
+        if(linkForm.linkRating.length() < Link.LINK_RATING_MIN_LENGTH)
+        {
+            valid = false;
+            errorMessages.add("Link Rating must be " + Link.LINK_RATING_MIN_LENGTH + " characters or less");
         }
 
         if (valid)

@@ -10,6 +10,9 @@ public class Link
     public static final int URL_LINK_MAX_LENGTH = 900;
     public static final int LINK_COMMENTS_MAX_LENGTH = 250;
     public static final int LINK_RATING_MAX_LENGTH = 6;
+    public static final int URL_LINK_MIN_LENGTH = 1;
+    public static final int LINK_COMMENTS_MIN_LENGTH = 1;
+    public static final int LINK_RATING_MIN_LENGTH = 1;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

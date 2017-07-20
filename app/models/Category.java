@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Category
 {
     public static final int CATEGORY_NAME_MAX_LENGTH = 40;
+    public static final int CATEGORY_NAME_MIN_LENGTH = 1;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
