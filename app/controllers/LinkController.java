@@ -151,11 +151,11 @@ public class LinkController extends BaseController
         DynamicForm form = formFactory.form().bindFromRequest();
 
         int linkId = Integer.parseInt(form.get("id"));
-        int categoryId = Integer.parseInt(form.get("id"));
+        int categoryId = Integer.parseInt(form.get("categoryId"));
         String linkUrl = form.get("linkurl");
         int linkRating = Integer.parseInt(form.get("linkrating"));
         String linkComments = form.get("linkcomments");
-        LocalDate linkWatchBy = LocalDate.parse(form.get("linkWatchBy"));
+        LocalDate linkWatchBy = LocalDate.parse(form.get("linkwatchby"));
 
         Link link =
                 jpaApi.em().
@@ -179,8 +179,10 @@ public class LinkController extends BaseController
 
         jpaApi.em().persist(link);
 
-        return ok(views.html.link.render(link, categories));
+        //return ok(views.html.link.render(link, categories));
+        return ok(views.html.linkmenu.render());
     }
+
 
     @Transactional(readOnly = true)
     public Result getLink(Integer id)
@@ -194,6 +196,7 @@ public class LinkController extends BaseController
         Query usersQuery = jpaApi.em().createQuery("SELECT l FROM Link l " +
                                                             "WHERE linkId <> :id " +
                                                             "ORDER BY link_url", Link.class);
+
 
         usersQuery.setParameter("id", id);
         List<Link> links = usersQuery.getResultList();
@@ -255,6 +258,28 @@ public class LinkController extends BaseController
         List<Link> links = query.getResultList();
 
         return ok(views.html.links.render(links));
+    }
+
+    @Transactional
+    public Result click()
+    {
+        Logger.debug("got the click");
+        DynamicForm form = formFactory.form().bindFromRequest();
+        int linkId = Integer.parseInt(form.get("linkId"));
+
+        Link link =
+                jpaApi.em().
+                        createQuery("SELECT l FROM Link l WHERE linkId = :id", Link.class).
+                        setParameter("id", linkId).
+                        getSingleResult();
+
+        link.setLinkCounter(link.getLinkCounter() + 1);
+
+        jpaApi.em().persist(link);
+
+        Logger.debug("got the click" + linkId);
+
+        return ok("got it " + linkId);
     }
 
 }

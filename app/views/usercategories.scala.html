@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
     <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/stylesheets/style.css">
 </head>
 <body>
 <div class="jumbotron text-center">
@@ -43,12 +44,13 @@
 </nav>
 
 <form method="GET" action="@routes.UserCategoriesController.getCategoryLinks">
-    <div class="container">
+    <div class="container page-container">
         <div class="row">
             <div class="col-sm-4 ">
                 <div class="well well-lg"><center>
                     <h4>Pick Category</h4>
                     <label>Categories:</label><select onchange="this.form.submit()" id="categoryId" name="categoryId">
+                    <option disabled selected value> -- select an option -- </option>
                     @for(category <- categories){
                         @if(category.getCategoryId == selectedCategoryId){
                     <option selected value="@category.getCategoryId">@category.getCategoryName</option>
@@ -59,21 +61,17 @@
                 </select><br></center>
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
             <div class="well well-lg"><center>
                 <h4>Links Belonging to Category</h4>
                     @for(link <- links){
-                    <div class="well" style="background-color:#bfbfbf"><center>
+                    <div class="well well-container">
                         <table>
-                    <tr>
-                        <td>
-                            <label>Url:</label><a href="@link.getLinkUrl" target="_blank">@link.getLinkUrl</a>
+                            <tr>
+                                <td>
+                            <label>Url:</label><u onclick="logClick(@link.getLinkId, '@link.getLinkUrl');">
+                                        @link.getLinkUrl</u>
                             <table>
-                                <tr>
-                                    <td>
-                                        <label>Rating:</label>@link.getLinkRating
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td>
                                         <label>Comments:</label>@link.getLinkComments
@@ -81,22 +79,45 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label>Watch By:</label>@link.getLinkWatchBy
+                                        <label>Rating:</label>@link.getLinkRating
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label>Visited #:</label>@link.getLinkCounter
+                                        <label>Number of visits:</label>@link.getLinkCounter
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Watch By:</label>@link.getLinkWatchBy
                                     </td>
                                 </tr>
                             </table>
                         </td>
-                    </tr></table>
-                    </center></div>
+                    </tr></table></div>
                 }
             </center></div></div>
         </div>
     </div>
 </form>
+<script type="text/javascript">
+    function logClick(linkId, url){
+        $.ajax({
+            url : '/linkClick',
+            type : 'POST',
+            data : {
+                'linkId' : linkId
+            },
+            dataType: 'html',
+            success : function(data) {
+                window.open(url);
+            },
+            error : function(request,error)
+            {
+                alert(error);
+            }
+         });
+     }
+</script>
 </body>
 </html>

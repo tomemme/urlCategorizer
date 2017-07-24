@@ -9,6 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
     <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/stylesheets/style.css">
 </head>
 <body>
 <div class="jumbotron text-center">
@@ -40,6 +41,7 @@
     </div>
 </nav>
 <form method="GET" action="@routes.CategoryController.getCategoryMenu"></form>
+    <div class="container">
         <div class="col-sm-4">
             <div class="well well-sm"><center>
                 <a href="/categorySearch"><span class="glyphicon glyphicon-search"></span> Search Categories</a><br></center></div>
@@ -52,5 +54,6 @@
             <div class="well well-sm"><center>
                 <a href="/categories"><span class="glyphicon glyphicon-edit"></span> Update Categories</a></center></div>
         </div>
+    </div>
 </body>
 </html>

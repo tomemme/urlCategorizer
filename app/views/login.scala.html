@@ -4,14 +4,12 @@
     <title>Url Categorizer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="views" media="screen" href="@routes.Assets.versioned("views/navbar.scala.html")>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
     <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/stylesheets/style.css">
 </head>
 <body>
 <div class="jumbotron text-center">
@@ -45,12 +43,6 @@
 <form method="POST" action="@routes.LoginController.login">
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
-            <div class="well"><center>
-                <h3>Create New User</h3>
-                <button type="submit" class="btn btn-primary" formmethod="GET" formaction="/userAdd">Create</button></center>
-            </div>
-        </div>
         <div class="col-sm-6">
             <div class="well well-lg"><center>
           <h3>Please Login</h3>
@@ -71,6 +63,12 @@
                     </div>
                             <button type="submit" class="btn btn-primary">Login</button></form>
                 </center></div>
+        </div>
+        <div class="col-sm-4">
+            <div class="well"><center>
+                <h3>Create New User</h3>
+                <button type="submit" class="btn btn-primary" formmethod="GET" formaction="/userAdd">Create</button></center>
+            </div>
         </div>
     </div>
 </div>

@@ -57,8 +57,7 @@ public class LoginController extends BaseController
             if (Arrays.equals(hashedPassword, dbpassword))
             {
                 login(userLogin.getUserId());
-                //result = redirect(routes.UserController.getUser(userLogin.getUserId()));
-                result = redirect(routes.MenuController.getMenu());
+                result = redirect(routes.UserCategoriesController.getCategoryLinks());
             }
         }
 

@@ -36,7 +36,13 @@ public class CategoryController extends BaseController
         List<String> errorMessages = new ArrayList<>();
         return ok(views.html.newcategory.render(new CategoryForm(), errorMessages));
     }
+/*
+    @Transactional
+    public Result removeCategory()
+    {
 
+    }
+*/
     @Transactional
     public Result addNewCategory()
     {

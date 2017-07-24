@@ -10,6 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
     <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/stylesheets/style.css">
 </head>
 <body>
 <div class="jumbotron text-center">
@@ -48,27 +49,50 @@
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Info!</strong> Please fill out all information.</center>
             </div>
-            <div class="col-sm-4 col-md-offset-4">
-                <div class="well well-lg">
+            <div class="col-sm-6 col-md-offset-3">
+                <div class="well well-lg well-container">
                     <input type="hidden" name="id" id="id" value="@link.getLinkId">
-                    <center><h4>Edit Link</h4></center>
-                    <label>Categories:</label><select id="categoryId" name="categoryId">
-                    @for(category <- categories){
-                    @if(category.getCategoryId == category.getCategoryName){
-                    <option selected value="@category.getCategoryId">@category.getCategoryName</option>
-                    }else{
-                    <option value="@category.getCategoryId">@category.getCategoryName</option>
-                    }
-                    }
-                </select><br>
-                    <label>Link Url:</label><input type="text" name="linkurl" id="linkurl"
-                                                   value="@link.getLinkUrl">
-                    <label>Link Rating:</label><input type="text" name="linkrating" id="linkrating"
-                                                      value="@link.getLinkRating">
-                    <label>Link Watch by Date:</label><input type="date" name="linkwatchby" id="linkwatchby"
-                                                             value="@link.getLinkWatchBy">
-                    <label>Link Comments:</label><input type="text" name="linkcomments" id="linkcomments"
-                                                        value="@link.getLinkComments">
+                    <h4>Edit Link</h4>
+                    <div class="table-container">
+                    <center><table>
+                          <tr>
+                              <td>
+                                  <label>Categories:</label><select id="categoryId" name="categoryId">
+                                  @for(category <- categories){
+                                  @if(category.getCategoryId == category.getCategoryName){
+                                  <option selected value="@category.getCategoryId">@category.getCategoryName</option>
+                                  }else{
+                                  <option value="@category.getCategoryId">@category.getCategoryName</option>
+                                  }
+                                  }
+                              </select>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <label>Link Url:</label><input type="text" name="linkurl" id="linkurl"
+                                                                 value="@link.getLinkUrl">
+                              </td>
+                          </tr>
+                        <tr>
+                            <td>
+                                <label>Link Rating:</label><input type="text" name="linkrating" id="linkrating"
+                                                                  value="@link.getLinkRating">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Link Watch by Date:</label><input type="date" name="linkwatchby" id="linkwatchby"
+                                                                         value="@link.getLinkWatchBy">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Link Comments:</label><input type="text" name="linkcomments" id="linkcomments"
+                                                                    value="@link.getLinkComments">
+                            </td>
+                        </tr>
+                    </table></div></center>
                  </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>

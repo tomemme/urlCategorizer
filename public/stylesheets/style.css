@@ -1,0 +1,20 @@
+html, body, page-container{
+    background-color: #e0e0d1;
+}
+
+.well-container{
+    margin: auto;
+    padding: 30;
+    background-color: #bfbfbf;
+    text-align: left;
+}
+
+u {
+    cursor: pointer;
+    color: #3366ff;
+}
+
+input {
+    width: 100%;
+}
+
